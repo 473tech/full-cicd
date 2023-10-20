@@ -40,7 +40,7 @@ pipeline{
         steps{
             script{
                 dir('/var/lib/jenkins/workspace/demo-project/kubernetes/') {
-                    sh 'helm datree test 473tech/'
+                    sh "helm datree test '473tech/'"
                 }
             }
         }
