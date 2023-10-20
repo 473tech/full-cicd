@@ -39,8 +39,8 @@ pipeline{
     stage("Identify Misconfigutartion in helm with datree"){
         steps{
             script{
-                dir('/var/lib/jenkins/workspace/demo-project/kubernetes/473tech') {
-                    sh "helm datree test"
+                dir('/var/lib/jenkins/workspace/demo-project/kubernetes') {
+                    sh "helm datree test 473tech"
                 }
             }
         }
