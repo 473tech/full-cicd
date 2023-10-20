@@ -36,6 +36,11 @@ pipeline{
             }
         }
     }
+    post{
+        always{
+            emailext body: '<h1>This is to inform you that your build successfully passed" </h1>', subject: 'Build Succeeded ', to: 'gotolulope@gmail.com'
+        }
+    }
     }
     
 }
