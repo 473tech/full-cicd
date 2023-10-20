@@ -5,9 +5,6 @@ metadata:
   labels:
     {{- include "473tech.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "473tech.selectorLabels" . | nindent 6 }}
