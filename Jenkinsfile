@@ -36,11 +36,17 @@ pipeline{
             }
         }
     }
+    }
     post{
         always{
             emailext body: '<h1>This is to inform you that your build successfully passed" </h1>', subject: 'Build Succeeded ', to: 'gotolulope@gmail.com'
         }
-    }
+        success{
+            mail bcc: '', body: '<h1> BUILD PASSED</h1>', cc: '', from: '', replyTo: '', subject: 'BUILD PASSED', to: 'gotolulope@gmail.com'
+        }
+        failure{
+            mail bcc: '', body: '<h1> BUILD FAILED</h1>', cc: '', from: '', replyTo: '', subject: 'BUILD PASSED', to: 'gotolulope@gmail.com'
+        }
     }
     
 }
