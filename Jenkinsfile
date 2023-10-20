@@ -1,5 +1,8 @@
 pipeline{
     agent any 
+    environment{
+        VERSION = "${env.BUILD_ID}"
+    }
     tools{
         maven 'maven'
     }
@@ -17,6 +20,21 @@ pipeline{
 
             }
         }
+        }
+    }
+    stage("docker build and docker push"){
+        steps{
+            script{
+
+                withCredentials([string(credentialsId: 'nex_docker_pass', variable: 'docker_password')]) {
+                 sh '''
+                docker build -t 3.88.207.10:8083/473tech-docker:${VERSION} .
+                docker login -u admin -p $docker_password  3.88.207.104:8083
+                docker push 3.88.207.10:8083/473tech-docker:${VERSION}
+                docker rmi 3.88.207.10:8083/473tech-docker:${VERSION}
+                '''
+            }   
+            }
         }
     }
 }
