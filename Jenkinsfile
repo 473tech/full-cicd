@@ -30,7 +30,7 @@ pipeline{
                 docker build -t 3.88.207.10:8083/473tech-docker:${VERSION} .
                 docker login -u admin -p $docker_password  3.88.207.104:8083
                 docker push 3.88.207.10:8083/473tech-docker:${VERSION}
-                docker rmi 3.88.207.10:8083/473tech-docker:${VERSION}
+                docker rmi 3.88.207.10:8083/473tech:${VERSION}
                 '''
             }   
             }
