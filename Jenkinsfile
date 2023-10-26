@@ -56,8 +56,8 @@ pipeline{
         script {
           //sh "sed -i 's,TEST_IMAGE_NAME,harshmanvar/node-web-app:$BUILD_NUMBER,' deployment.yaml"
          // sh "cat deployment.yaml"
-          sh "kubectl --kubeconfig=/var/lib/jenkins/.kube/config get pods"
-          sh "kubectl --kubeconfig=/var/lib/jenkins/.kube/config apply -f k8s.yaml"
+          sh "~/bin/kubectl --kubeconfig=/var/lib/jenkins/.kube/config get pods"
+          sh "~/bin/kubectl --kubeconfig=/var/lib/jenkins/.kube/config apply -f k8s.yaml"
         }
       }
     }
