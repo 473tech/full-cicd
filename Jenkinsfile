@@ -46,9 +46,20 @@ pipeline{
                  tar -czvf myapp-${helmversion}.tgz myapp/
                 curl -u admin:$docker_password http://34.207.194.87:8081/repository/helm-hosted/ --upload-file myapp-${helmversion}.tgz -v
                 '''
-            }   
+                }   
             }
         }
+    }
+
+    stage('Deploy to K8s') {
+      steps{
+        script {
+          //sh "sed -i 's,TEST_IMAGE_NAME,harshmanvar/node-web-app:$BUILD_NUMBER,' deployment.yaml"
+         // sh "cat deployment.yaml"
+          sh "kubectl --kubeconfig=/home/ec2-user/.kube/config get pods"
+          sh "kubectl --kubeconfig=/home/ec2-user/.kube/config apply -f k8s.yaml"
+        }
+      }
     }
     
     }
