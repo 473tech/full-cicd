@@ -22,7 +22,7 @@ spec:
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-       - name: registry-secret
+        - name: registry-secret
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
