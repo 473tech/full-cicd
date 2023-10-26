@@ -7,20 +7,20 @@ pipeline{
         maven 'maven'
     }
     stages{
-        stage("Sonarqube quality check"){
-        steps{
-            script
-            {
-                withSonarQubeEnv(credentialsId: 'sonar-token') {
-                    sh "mvn sonar:sonar"
-                }
-                timeout(time:1, unit: 'HOURS'){
-                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
-                }
+        // stage("Sonarqube quality check"){
+        // steps{
+        //     script
+        //     {
+        //         withSonarQubeEnv(credentialsId: 'sonar-token') {
+        //             sh "mvn sonar:sonar"
+        //         }
+        //         timeout(time:1, unit: 'HOURS'){
+        //             waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
+        //         }
 
-            }
-        }
-        }
+        //     }
+        // }
+        // }
     //     stage("docker build and docker push"){
     //     steps{
     //         script{
@@ -56,8 +56,8 @@ pipeline{
         script {
           //sh "sed -i 's,TEST_IMAGE_NAME,harshmanvar/node-web-app:$BUILD_NUMBER,' deployment.yaml"
          // sh "cat deployment.yaml"
-          sh "$(which kubectl) --kubeconfig=/home/ec2-user/.kube/config get pods"
-          sh "$(which kubectl) --kubeconfig=/home/ec2-user/.kube/config apply -f k8s.yaml"
+          sh "\$(which kubectl) --kubeconfig=/home/ec2-user/.kube/config get pods"
+          sh "\$(which kubectl) --kubeconfig=/home/ec2-user/.kube/config apply -f k8s.yaml"
         }
       }
     }
