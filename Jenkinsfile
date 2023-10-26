@@ -56,7 +56,7 @@ pipeline{
         script {
           //sh "sed -i 's,TEST_IMAGE_NAME,harshmanvar/node-web-app:$BUILD_NUMBER,' deployment.yaml"
          // sh "cat deployment.yaml"
-         sh "helm upgrade --install --set-image.repository=34.207.194.87:8083/473tech --set image.tag=${VERSION} demo myapp"
+         sh "helm upgrade --install --set image.repository=34.207.194.87:8083/473tech --set image.tag=${VERSION} demo myapp"
           sh "~/bin/kubectl --kubeconfig=/var/lib/jenkins/.kube/config get pods"
           sh "~/bin/kubectl --kubeconfig=/var/lib/jenkins/.kube/config apply -f k8s.yaml"
         }
