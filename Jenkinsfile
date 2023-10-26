@@ -42,7 +42,7 @@ pipeline{
 
                 withCredentials([string(credentialsId: 'nex_docker_pass', variable: 'docker_password')]) {
                  sh '''
-                 helmversion=$(helm show chart myapp |grep version|sed  s/version://g)
+                 helmversion=$(helm show chart myapp |grep version|sed  s/version://g|tr -d ' ')
                  tar -czvf myapp-${helmversion}.tgz myapp/
                 curl -u admin:$docker_password http://34.207.194.87:8081/repository/helm-hosted/ --upload-file myapp-${helmversion}.tgz -v
                 '''
