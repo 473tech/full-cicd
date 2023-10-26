@@ -27,10 +27,10 @@ pipeline{
 
                 withCredentials([string(credentialsId: 'nex_docker_pass', variable: 'docker_password')]) {
                  sh '''
-                docker build -t 44.202.5.30:8083/473tech:${VERSION} .
-                docker login -u admin -p $docker_password  44.202.5.30:8083
-                docker push 44.202.5.30:8083/473tech:${VERSION}
-                docker rmi 44.202.5.30:8083/473tech:${VERSION}
+                docker build -t 34.207.194.87:8083/473tech:${VERSION} .
+                docker login -u admin -p $docker_password  34.207.194.87:8083
+                docker push 34.207.194.87:8083/473tech:${VERSION}
+                docker rmi 34.207.194.87:8083/473tech:${VERSION}
                 '''
             }   
             }
